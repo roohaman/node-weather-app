@@ -6,17 +6,16 @@ const port = process.env.PORT || 3000
 const geoCode = require('./utils/geocode')
 const weatherForcast = require('./utils/weatherForcast')
 
-//console.log(__dirname)
-//console.log(path.join(__dirname,'../public/about.html'))
-
-//app.use(express.static(path.join(__dirname,'../public')))
+//setting path variables
 const viewsPath = path.join(__dirname,'../templates/views')
 const partialPath= path.join(__dirname,'../templates/partials')
+//setting handlebars
 app.set('view engine','hbs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialPath)
 app.use(express.static(path.join(__dirname,'../public')))
 
+//home page
 app.get('',(req,res) =>
 {
     res.render('index',{
@@ -26,6 +25,7 @@ app.get('',(req,res) =>
     })
 })
 
+//about page
 app.get('/about',(req,res)=>
 {
     res.render('about',
@@ -35,6 +35,7 @@ app.get('/about',(req,res)=>
     })
 })
 
+//help page
 app.get('/help',(req,res)=>
 {
     res.render('help',{
@@ -69,6 +70,7 @@ app.get('/products',(req,res)=>
     )
 })
 
+//weather page
 app.get('/weather',(req,res)=>
 {
     if(!req.query.address){
@@ -103,16 +105,6 @@ app.get('/weather',(req,res)=>
         }
          
         )
-
-    //console.log(req.query.location)
-    /*res.send(
-        {
-
-            forcast:'Its going to rain today',
-            location:'Toronto',
-            address : req.query.address
-        }
-    )*/
 })
 
 
@@ -124,8 +116,6 @@ app.get('*',(req,res)=>
         errorMessage: '404,Page not found'
     })
 })
-
-
 
 app.listen(port,() =>
 {
