@@ -10,7 +10,7 @@ const weatherForcast = (latitude,longitude, callBack) =>
         }else if(body.error){
             callBack("Unable to find the location",undefined)
         }else{
-            callBack(undefined,'It is currently ' + body.currently.temperature + '  out there  and there are ' + body.currently.precipProbability + '% chances of rain'
+            callBack(undefined,'It is currently ' + body.currently.temperature + '  degrees out there with ' + body.currently.precipProbability + '% chances of rain and the humidity is ' + body.currently.humidity
             )
         }
 
